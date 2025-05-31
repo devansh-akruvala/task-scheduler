@@ -41,7 +41,7 @@ func GetDBConnectionString() string {
 		log.Fatalf("Env vars are not set : %s", strings.Join(missingEnvVars, ", "))
 	}
 
-	return fmt.Sprintf("postgres://%s:%s@%s:5431/%s", dbUser, dbPassword, dbHost, dbName)
+	return fmt.Sprintf("postgres://%s:%s@%s:5432/%s", dbUser, dbPassword, dbHost, dbName)
 }
 
 func ConnectToDatabase(ctx context.Context, dbConnectionString string) (*pgxpool.Pool, error) {

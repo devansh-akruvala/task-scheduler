@@ -1,5 +1,5 @@
 # Use an official Go runtime as a parent image
-FROM golang:1.21
+FROM golang:1.23
 
 # Install Protobuf compiler and Go-related packages
 RUN apt-get update && apt-get install -y \
@@ -20,9 +20,11 @@ COPY go.mod go.sum ./
 RUN go mod download
 
 # Copy the local package files to the container's workspace.
+
 COPY pkg/ ./pkg/
 COPY cmd/scheduler/main.go .
 
+RUN chmod +x ./pkg/grpcapi/build.sh
 RUN ./pkg/grpcapi/build.sh
 
 # Build the scheduler application
