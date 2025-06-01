@@ -23,6 +23,7 @@ RUN go mod download
 COPY pkg/ ./pkg/
 COPY cmd/coordinator/main.go .
 
+RUN chmod +x ./pkg/grpcapi/build.sh
 RUN ./pkg/grpcapi/build.sh
 
 # Build the coordinator application
